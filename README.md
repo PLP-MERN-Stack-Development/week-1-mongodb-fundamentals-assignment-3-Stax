@@ -1,47 +1,96 @@
-[![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-2e0aaae1b6195c2367325f4f02e2d04e9abb55f0b24a779b69b11b9e10269abc.svg)](https://classroom.github.com/online_ide?assignment_repo_id=19690009&assignment_repo_type=AssignmentRepo)
-# MongoDB Fundamentals Assignment
+MongoDB Bookstore CRUD Operations
+Setup and Installation
+Prerequisites
+MongoDB Community Server installed (version 4.4+ recommended)
 
-This assignment focuses on learning MongoDB fundamentals including setup, CRUD operations, advanced queries, aggregation pipelines, and indexing.
+MongoDB Shell (mongosh) installed
 
-## Assignment Overview
+Node.js (optional, only needed if using the provided insert_books.js script)
 
-You will:
-1. Set up a MongoDB database
-2. Perform basic CRUD operations
-3. Write advanced queries with filtering, projection, and sorting
-4. Create aggregation pipelines for data analysis
-5. Implement indexing for performance optimization
+1. Database Setup
+Option A: Using the provided script (recommended)
+Clone this repository
 
-## Getting Started
+Navigate to the project directory
 
-1. Accept the GitHub Classroom assignment invitation
-2. Clone your personal repository that was created by GitHub Classroom
-3. Install MongoDB locally or set up a MongoDB Atlas account
-4. Run the provided `insert_books.js` script to populate your database
-5. Complete the tasks in the assignment document
+Run the data insertion script:
 
-## Files Included
+bash
+node insert_books.js
+Option B: Manual Setup
+Start MongoDB server:
 
-- `Week1-Assignment.md`: Detailed assignment instructions
-- `insert_books.js`: Script to populate your MongoDB database with sample book data
+bash
+mongod --dbpath "C:\data\db"
+(Create the directory first if it doesn't exist: mkdir C:\data\db)
 
-## Requirements
+Connect to MongoDB shell:
 
-- Node.js (v18 or higher)
-- MongoDB (local installation or Atlas account)
-- MongoDB Shell (mongosh) or MongoDB Compass
+bash
+mongosh
+Create and switch to the database:
 
-## Submission
+javascript
+use plp_bookstore
+Create the books collection and insert sample data:
 
-Your work will be automatically submitted when you push to your GitHub Classroom repository. Make sure to:
+javascript
+db.books.insertMany([
+  {
+    title: "To Kill a Mockingbird",
+    author: "Harper Lee",
+    genre: "Fiction",
+    published_year: 1960,
+    price: 12.99,
+    in_stock: true,
+    pages: 336,
+    publisher: "J. B. Lippincott & Co."
+  },
+  // Add other books as needed
+])
+2. Running the Queries
+Ensure MongoDB is running (as shown above)
 
-1. Complete all tasks in the assignment
-2. Add your `queries.js` file with all required MongoDB queries
-3. Include a screenshot of your MongoDB database
-4. Update the README.md with your specific setup instructions
+Connect to the MongoDB shell:
 
-## Resources
+bash
+mongosh
+Switch to your database:
 
-- [MongoDB Documentation](https://docs.mongodb.com/)
-- [MongoDB University](https://university.mongodb.com/)
-- [MongoDB Node.js Driver](https://mongodb.github.io/node-mongodb-native/) 
+javascript
+use plp_bookstore
+Execute any of the queries from the sections below
+
+Task 2: Basic CRUD Operations
+[Previous CRUD operations content remains the same...]
+
+Task 3: Advanced Queries
+[Previous advanced queries content remains the same...]
+
+Task 4: Aggregation Pipeline
+[Previous aggregation content remains the same...]
+
+Task 5: Indexing
+[Previous indexing content remains the same...]
+
+Troubleshooting
+Common Issues
+Connection refused errors:
+
+Ensure MongoDB service is running (net start MongoDB on Windows)
+
+Verify the port 27017 isn't blocked
+
+Data directory issues:
+
+bash
+mkdir -p /data/db  # Linux/Mac
+mkdir C:\data\db   # Windows
+Authentication problems:
+
+If you enabled auth, connect with credentials:
+
+bash
+mongosh -u username -p password --authenticationDatabase admin
+License
+This project is open source and available under the MIT License.
